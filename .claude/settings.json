@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(sed 's/{\"timestamp\"/\\\\n{\"timestamp\"/g')",
+      "Bash(curl -s -o /dev/null -w \"3000:%{http_code}\\\\n\" http://localhost:3000/)"
+    ]
+  }
+}
