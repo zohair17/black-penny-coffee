@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import Navbar from "@/components/layout/Navbar";
 import SocialLinks from "@/components/layout/SocialLinks";
 import BrandTitle from "./BrandTitle";
 import EventCard from "./EventCard";
@@ -9,7 +8,8 @@ import { stageVariants, riseVariants } from "./motion";
 /**
  * The full hero composition revealed over the frozen video frame.
  * A staggered container brings the chrome and content in together:
- * navbar, brand (left), menu booklet (centre), event (right), socials.
+ * brand (left), menu booklet (centre), event (right), socials. The fixed
+ * header is rendered separately by {@link HeroSection} so it persists on scroll.
  */
 export default function HeroStage({ onOpenMenu }) {
   return (
@@ -20,10 +20,6 @@ export default function HeroStage({ onOpenMenu }) {
       exit="hidden"
       className="absolute inset-0 z-10 flex flex-col"
     >
-      <motion.div variants={riseVariants}>
-        <Navbar />
-      </motion.div>
-
       <div className="flex flex-1 items-center px-6 md:px-10">
         <motion.div
           variants={stageVariants}

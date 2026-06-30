@@ -60,31 +60,14 @@ Hero and Menu completed.
 Working on About Section.
 
 # Problem
-- ⨯ Error: Image Optimization using the default loader is not compatible with `{ output: 'export' }`.
-  Possible solutions:
-    - Remove `{ output: 'export' }` and run "next start" to run server mode including the Image Optimization API.
-    - Configure `{ images: { unoptimized: true } }` in `next.config.js` to disable the Image Optimization API.
-  Read more: https://nextjs.org/docs/messages/export-image-api
-    at ignore-listed frames {
-  digest: '2768655431@E500'
-}
- GET / 500 in 1785ms (next.js: 856ms, application-code: 929ms)
-[browser] Uncaught Error: Image Optimization using the default loader is not compatible with `{ output: 'export' }`.
-  Possible solutions:
-    - Remove `{ output: 'export' }` and run "next start" to run server mode including the Image Optimization API.
-    - Configure `{ images: { unoptimized: true } }` in `next.config.js` to disable the Image Optimization API.
-  Read more: https://nextjs.org/docs/messages/export-image-api
-    at Navbar (src/components/layout/Navbar.jsx:22:11)
-    at AboutSection (src/components/about/AboutSection.jsx:58:11)
-    at Home (src\app\page.js:10:7)
-  20 |       <nav className="mx-auto flex max-w-7xl items-center justify-bet...
-  21 |         <a href="#home" aria-label={siteConfig.name} className="shrin...
-> 22 |           <Image
-     |           ^
-  23 |             src={assets.logo.src}
-  24 |             alt={`${siteConfig.name} logo`}
-  25 |             width={56}
+1) in mobile or short screen make the text "The Black Penny" Like this not like this 
+The
+Black
+Penny
+means the The Black in same row and the Penny in center 
 
+2) the event should be display like this in mobile and shorter screens:
+Event: Live Music | Oguzhan & Mehmet | 21:30
 
 
 # Updation:

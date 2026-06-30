@@ -31,7 +31,7 @@ export default function Footer() {
               alt={`${siteConfig.name} logo`}
               width={64}
               height={64}
-              className="h-14 w-14 object-contain brightness-0 invert"
+              className="h-14 w-14 object-contain "
             />
             <p className="font-display text-2xl">{siteConfig.name}</p>
             <p className="text-sm text-white/50">{siteConfig.tagline}</p>

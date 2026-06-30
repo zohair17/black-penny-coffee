@@ -1,8 +1,9 @@
 "use client";
 
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useVideoIntro } from "@/hooks/useVideoIntro";
 import { useMenu } from "@/components/menu/MenuContext";
+import Navbar from "@/components/layout/Navbar";
 import HeroVideo from "./HeroVideo";
 import HeroStage from "./HeroStage";
 
@@ -33,6 +34,23 @@ export default function HeroSection() {
 
       <AnimatePresence>
         {hasEnded && <HeroStage key="stage" onOpenMenu={openMenu} />}
+      </AnimatePresence>
+
+      {/* Fixed site header — revealed once the intro ends, then stays pinned to
+          the top of the viewport across every section. Only opacity animates so
+          no transformed ancestor is created (which would break `position:fixed`). */}
+      <AnimatePresence>
+        {hasEnded && (
+          <motion.div
+            key="header"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <Navbar />
+          </motion.div>
+        )}
       </AnimatePresence>
     </section>
   );

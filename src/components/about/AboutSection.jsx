@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import Navbar from "@/components/layout/Navbar";
 import SocialLinks from "@/components/layout/SocialLinks";
 import { siteConfig } from "@/config/site";
 import AboutVideo from "./AboutVideo";
@@ -39,7 +38,7 @@ export default function AboutSection() {
     <section
       id="about"
       ref={sectionRef}
-      className="relative h-[100svh] w-full overflow-hidden bg-black"
+      className="relative min-h-[100svh] w-full overflow-hidden bg-black"
     >
       <AboutVideo ref={videoRef} />
 
@@ -49,32 +48,30 @@ export default function AboutSection() {
         className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/50 via-black/25 to-black/55"
       />
 
+      {/* Relative + min-height so the stacked mobile layout can grow instead of
+          being crushed into one screen; on md+ it fills the viewport overlay. */}
       <motion.div
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
-        className="absolute inset-0 z-10 flex flex-col"
+        className="relative z-10 flex min-h-[100svh] flex-col"
       >
-        <motion.div variants={fadeUpVariants}>
-          <Navbar />
-        </motion.div>
-
-        <div className="flex flex-1 items-center px-6 md:px-10">
-          <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-8 md:grid-cols-[1fr_auto_1fr] md:gap-6">
+        <div className="flex flex-1 items-center px-6 py-12 md:px-10 md:py-0">
+          <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 sm:gap-14 md:grid-cols-[1fr_auto_1fr] md:gap-6">
             <StoryBlock className="md:justify-self-start" />
 
             {/* "About" sits above the cup, "Us" below it. */}
-            <div className="flex flex-col items-center gap-6 py-2 md:h-[55vh] md:justify-between md:gap-0">
+            <div className="flex flex-col items-center gap-4 py-2 sm:gap-6 md:h-[55vh] md:justify-between md:gap-0">
               <Typewriter
                 text={siteConfig.about.centerLabel}
                 start={inView}
                 speed={140}
-                className="whitespace-nowrap text-center font-display text-5xl font-medium text-white text-shadow-soft sm:text-6xl md:text-7xl lg:text-8xl"
+                className="whitespace-nowrap text-center font-display text-6xl font-medium text-white text-shadow-soft sm:text-7xl md:text-7xl lg:text-8xl"
               />
               <Typewriter
                 text={siteConfig.about.centerLabelSub}
                 start={inView}
                 speed={140}
-                className="whitespace-nowrap text-center font-display text-5xl font-medium text-white text-shadow-soft sm:text-6xl md:text-7xl lg:text-8xl"
+                className="whitespace-nowrap text-center font-display text-6xl font-medium text-white text-shadow-soft sm:text-7xl md:text-7xl lg:text-8xl"
               />
             </div>
 

@@ -13,7 +13,7 @@ export default function MenuBooklet({ onOpen }) {
       type="button"
       onClick={onOpen}
       variants={bookletVariants}
-      className="group flex cursor-pointer flex-col items-center"
+      className="group flex cursor-pointer flex-col items-center mt-0"
       aria-label="Open the menu"
     >
       <Image
