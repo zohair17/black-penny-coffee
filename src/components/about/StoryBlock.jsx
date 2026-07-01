@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import { siteConfig } from "@/config/site";
-import { fromLeftVariants, fadeUpVariants } from "./motion";
+import { fromLeftVariants } from "./motion";
 
 /**
- * "Our Story" — the block slides in from the left and the description fades up.
+ * "Our Story" — a light card that slides in from the left.
  */
 export default function StoryBlock({ className = "" }) {
   const { heading, text } = siteConfig.about.story;
@@ -11,17 +11,14 @@ export default function StoryBlock({ className = "" }) {
   return (
     <motion.div
       variants={fromLeftVariants}
-      className={`max-w-sm text-white text-shadow-soft ${className}`}
+      className={`flex flex-col justify-center rounded-[2rem] bg-[#efe6d9] p-8 shadow-xl md:p-12 ${className}`}
     >
-      <h2 className="font-display text-4xl font-medium leading-tight sm:text-5xl md:text-6xl">
+      <h3 className="font-display text-4xl leading-tight text-[#5a3320] sm:text-5xl">
         {heading}
-      </h2>
-      <motion.p
-        variants={fadeUpVariants}
-        className="mt-5 text-base font-light leading-relaxed text-amber-50/90 sm:text-lg"
-      >
+      </h3>
+      <p className="mt-6 text-base font-light leading-relaxed text-[#5a3320]/85 sm:text-lg">
         {text}
-      </motion.p>
+      </p>
     </motion.div>
   );
 }

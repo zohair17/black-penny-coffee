@@ -17,11 +17,11 @@ export default function SocialLinks() {
             aria-label={item.label}
             className="transition-colors hover:text-amber-200"
           >
-            <BrandIcon name={item.icon} size={28} />
+            <BrandIcon name={item.icon} size={58} />
           </a>
         ))}
       </div>
-      <span className="text-sm font-medium tracking-wide">Follow Us</span>
+      <span className="text-3xl font-medium tracking-wide">Follow Us</span>
     </div>
   );
 }

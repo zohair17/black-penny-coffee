@@ -12,8 +12,8 @@ const ICONS = {
 };
 
 /**
- * "Our Value" — heading + brand values, sliding in from the right with the
- * rows staggering into place.
+ * "Our Value" — a dark card sliding in from the right, its value rows (icon +
+ * label) staggering into place.
  */
 export default function ValueList({ className = "" }) {
   const { heading, items } = siteConfig.about.values;
@@ -21,21 +21,22 @@ export default function ValueList({ className = "" }) {
   return (
     <motion.div
       variants={fromRightVariants}
-      className={`text-white text-shadow-soft ${className}`}
+      className={`flex flex-col justify-center rounded-[2rem] bg-[#5a3320] p-8 text-[#f5efe6] shadow-xl md:p-12 ${className}`}
     >
-      <h2 className="font-display text-4xl font-medium leading-tight sm:text-5xl md:text-6xl">
+      <h3 className="text-center font-display text-4xl leading-tight sm:text-5xl">
         {heading}
-      </h2>
-      <ul className="mt-6 space-y-4">
+      </h3>
+
+      <ul className="mx-auto mt-8 flex w-full max-w-[16rem] flex-col gap-5">
         {items.map(({ label, icon }) => {
           const Icon = ICONS[icon] ?? Leaf;
           return (
             <motion.li
               key={label}
               variants={valueItemVariants}
-              className="flex items-center gap-3 text-lg font-light sm:text-xl"
+              className="flex items-center gap-4 text-lg font-light sm:text-xl"
             >
-              <Icon className="h-6 w-6 shrink-0 text-amber-200" strokeWidth={1.75} />
+              <Icon className="h-6 w-6 shrink-0" strokeWidth={1.75} />
               <span>{label}</span>
             </motion.li>
           );

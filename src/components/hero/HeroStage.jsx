@@ -1,42 +1,35 @@
+"use client";
+
 import { motion } from "framer-motion";
 import SocialLinks from "@/components/layout/SocialLinks";
 import BrandTitle from "./BrandTitle";
 import EventCard from "./EventCard";
-import MenuBooklet from "./MenuBooklet";
-import { stageVariants, riseVariants } from "./motion";
+import { stageVariants } from "./motion";
 
 /**
- * The full hero composition revealed over the frozen video frame.
- * A staggered container brings the chrome and content in together:
- * brand (left), menu booklet (centre), event (right), socials. The fixed
+ * The hero composition laid over the table backdrop. A staggered container
+ * brings the pieces in on load: the brand title centred over the table, the
+ * upcoming event anchored bottom-left and the socials bottom-right. The fixed
  * header is rendered separately by {@link HeroSection} so it persists on scroll.
  */
-export default function HeroStage({ onOpenMenu }) {
+export default function HeroStage() {
   return (
     <motion.div
       variants={stageVariants}
       initial="hidden"
       animate="visible"
-      exit="hidden"
       className="absolute inset-0 z-10 flex flex-col"
     >
-      <div className="flex flex-1 items-center px-6 md:px-10">
-        <motion.div
-          variants={stageVariants}
-          className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center justify-items-center gap-6 md:grid-cols-[1fr_auto_1fr] md:gap-6"
-        >
-          <BrandTitle className="md:justify-self-start" />
-          <MenuBooklet onOpen={onOpenMenu} />
-          <EventCard className="md:justify-self-end" />
-        </motion.div>
+      {/* Brand centred over the table top. */}
+      <div className="flex flex-1 items-center justify-center px-6">
+        <BrandTitle />
       </div>
 
-      <motion.div
-        variants={riseVariants}
-        className="flex justify-end px-6 pb-8 md:px-10"
-      >
+      {/* Event bottom-left, socials bottom-right. */}
+      <div className="flex items-end justify-between gap-4 px-6 pb-8 md:px-10">
+        <EventCard />
         <SocialLinks />
-      </motion.div>
+      </div>
     </motion.div>
   );
 }

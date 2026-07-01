@@ -6,7 +6,7 @@
 export const siteConfig = {
   name: "The Black Penny",
   /** Brand title rendered as stacked lines, matching the hero design. */
-  titleLines: ["The", "Black", "Penny"],
+  titleLines: ["The Black Penny"],
   tagline: "Coffee House & Kitchen",
 
   nav: [
@@ -69,10 +69,7 @@ export const siteConfig = {
 };
 
 export const assets = {
-  introVideo: "/asset/hotel.mp4",
-  /** Shown while the video buffers and as the reduced-motion fallback. */
-  introPoster: "/asset/the-black-penny-coffee.jpg",
-  aboutVideo: "/asset/about.mp4",
+  /** Top-down table shot that backs the hero. */
+  heroBackground: "/asset/backgroundImg.png",
   logo: { src: "/asset/logo.png", width: 772, height: 747 },
-  menuBooklet: { src: "/asset/menu.png", width: 612, height: 816 },
 };

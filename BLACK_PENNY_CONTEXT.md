@@ -56,19 +56,29 @@ Single Landing Page
 - Consistent spacing
 
 # Current Status
-Hero and Menu completed.
+Hero and Menu completed (reworked per Updation below).
 Working on About Section.
 
 # Problem
-1) in mobile or short screen make the text "The Black Penny" Like this not like this 
-The
-Black
-Penny
-means the The Black in same row and the Penny in center 
-
-2) the event should be display like this in mobile and shorter screens:
-Event: Live Music | Oguzhan & Mehmet | 21:30
+1) Menu Section: ✅ Fixed
+- The highlight used to switch at the midpoint between cards, so a card turned
+  dark while still gliding toward the centre. Selection is now gated by a
+  centre threshold: a card only lights up once it's genuinely centred, while
+  the background dish still tracks the nearest card continuously.
+  (src/components/menu/MenuSection.jsx — CENTER_THRESHOLD)
 
 
-# Updation:
-1) make the whole app responsive for every small and medium screen and large screen.for every mobile , tablet and LCD make this website responsive 
+# Updation: ✅ Done
+1) About section:
+- ✅ "Quality Ingredients" now shows its leaf icon (all four value rows are
+  icon + label).
+- ✅ Removed the Follow Us socials; the section is now full-height and the two
+  cards stretch to fill the space (no empty bottom).
+
+2) Find us (Location):
+- ✅ Background changed to the menu beige (#d8cabb) with brown (#5a3320) text —
+  cream details card, brown icons/button, tinted map frame.
+
+3) Footer:
+- ✅ Background changed to the menu beige (#d8cabb) with brown (#5a3320) text,
+  links and social icons.

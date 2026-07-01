@@ -19,14 +19,3 @@ export const riseVariants = {
   hidden: { opacity: 0, y: 24 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: EASE } },
 };
-
-/** The menu booklet settling onto the table. */
-export const bookletVariants = {
-  hidden: { opacity: 0, y: 48, scale: 0.92 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: { duration: 1, ease: EASE },
-  },
-};

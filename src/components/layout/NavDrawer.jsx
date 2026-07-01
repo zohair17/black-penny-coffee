@@ -5,16 +5,13 @@ import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 import { siteConfig, assets } from "@/config/site";
-import { useMenu } from "@/components/menu/MenuContext";
 
 /**
  * Slide-in navigation panel for small screens. The Navbar hides its inline
  * links below `md` and opens this drawer from the hamburger button instead.
- * Tapping a link (or the "Menu" entry, which opens the 3D book) closes it.
+ * Tapping a link scrolls to its section and closes the drawer.
  */
 export default function NavDrawer({ open, onClose }) {
-  const { openMenu } = useMenu();
-
   // Close on Escape and lock background scroll while the drawer is open.
   useEffect(() => {
     if (!open) return;
@@ -29,11 +26,6 @@ export default function NavDrawer({ open, onClose }) {
       document.body.style.overflow = prevOverflow;
     };
   }, [open, onClose]);
-
-  const handleMenu = () => {
-    onClose();
-    openMenu();
-  };
 
   return (
     <AnimatePresence>
@@ -82,29 +74,17 @@ export default function NavDrawer({ open, onClose }) {
 
             <nav className="flex-1 overflow-y-auto px-3 py-4">
               <ul className="flex flex-col gap-1">
-                {siteConfig.nav.map((item) =>
-                  item.href === "#menu" ? (
-                    <li key={item.href}>
-                      <button
-                        type="button"
-                        onClick={handleMenu}
-                        className="w-full rounded-lg px-4 py-3 text-left font-display text-xl tracking-wide transition-colors hover:bg-white/10 hover:text-amber-200"
-                      >
-                        {item.label}
-                      </button>
-                    </li>
-                  ) : (
-                    <li key={item.href}>
-                      <a
-                        href={item.href}
-                        onClick={onClose}
-                        className="block rounded-lg px-4 py-3 font-display text-xl tracking-wide transition-colors hover:bg-white/10 hover:text-amber-200"
-                      >
-                        {item.label}
-                      </a>
-                    </li>
-                  ),
-                )}
+                {siteConfig.nav.map((item) => (
+                  <li key={item.href}>
+                    <a
+                      href={item.href}
+                      onClick={onClose}
+                      className="block rounded-lg px-4 py-3 font-display text-xl tracking-wide transition-colors hover:bg-white/10 hover:text-amber-200"
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                ))}
               </ul>
             </nav>
           </motion.aside>

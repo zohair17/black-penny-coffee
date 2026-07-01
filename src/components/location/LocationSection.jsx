@@ -18,6 +18,7 @@ const reveal = {
 /**
  * Location section: address, opening hours and contact details beside an
  * embedded map, revealed with a left/right slide as it scrolls into view.
+ * Shares the warm backdrop and brown ink of the menu/about sections.
  */
 export default function LocationSection() {
   const { heading, intro, coords, address, hours, contact } =
@@ -29,14 +30,8 @@ export default function LocationSection() {
   return (
     <section
       id="location"
-      className="relative w-full overflow-hidden bg-neutral-950 py-16 text-white md:py-24"
+      className="relative w-full overflow-hidden bg-[#d8cabb] py-16 text-[#5a3320] md:py-24"
     >
-      {/* Warm ambient glow */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -top-32 left-1/2 h-72 w-[40rem] -translate-x-1/2 rounded-full bg-amber-500/10 blur-3xl"
-      />
-
       <div className="relative mx-auto max-w-7xl px-6 md:px-10">
         <motion.header {...reveal} className="mb-14 text-center">
           <motion.h2
@@ -47,7 +42,7 @@ export default function LocationSection() {
           </motion.h2>
           <motion.p
             variants={fadeUpVariants}
-            className="mx-auto mt-4 max-w-xl text-base font-light text-amber-50/80 sm:text-lg"
+            className="mx-auto mt-4 max-w-xl text-base font-light text-[#5a3320]/70 sm:text-lg"
           >
             {intro}
           </motion.p>
@@ -60,12 +55,12 @@ export default function LocationSection() {
           {/* Details */}
           <motion.div
             variants={fromLeftVariants}
-            className="flex flex-col gap-8 rounded-3xl border border-white/10 bg-white/[0.03] p-8 sm:p-10"
+            className="flex flex-col gap-8 rounded-3xl bg-[#efe6d9] p-8 shadow-xl sm:p-10"
           >
             <InfoRow icon={MapPin} title="Address">
               <p className="font-medium">{address.name}</p>
               {address.lines.map((line) => (
-                <p key={line} className="text-amber-50/80">
+                <p key={line} className="text-[#5a3320]/70">
                   {line}
                 </p>
               ))}
@@ -76,10 +71,10 @@ export default function LocationSection() {
                 {hours.map((h) => (
                   <li
                     key={h.days}
-                    className="flex justify-between gap-4 text-amber-50/80"
+                    className="flex justify-between gap-4 text-[#5a3320]/70"
                   >
                     <span>{h.days}</span>
-                    <span className="tabular-nums text-white">{h.time}</span>
+                    <span className="tabular-nums text-[#5a3320]">{h.time}</span>
                   </li>
                 ))}
               </ul>
@@ -88,13 +83,13 @@ export default function LocationSection() {
             <InfoRow icon={Phone} title="Contact">
               <a
                 href={`tel:${contact.phone.replace(/\s/g, "")}`}
-                className="block text-amber-50/80 transition-colors hover:text-amber-200"
+                className="block text-[#5a3320]/70 transition-colors hover:text-[#5a3320]"
               >
                 {contact.phone}
               </a>
               <a
                 href={`mailto:${contact.email}`}
-                className="flex items-center gap-2 text-amber-50/80 transition-colors hover:text-amber-200"
+                className="flex items-center gap-2 text-[#5a3320]/70 transition-colors hover:text-[#5a3320]"
               >
                 <Mail className="h-4 w-4" />
                 {contact.email}
@@ -105,7 +100,7 @@ export default function LocationSection() {
               href={directions}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-auto inline-flex w-fit items-center gap-2 rounded-full bg-amber-200 px-6 py-3 font-medium text-neutral-950 transition-opacity hover:opacity-90"
+              className="mt-auto inline-flex w-fit items-center gap-2 rounded-full bg-[#5a3320] px-6 py-3 font-medium text-[#f5efe6] transition-opacity hover:opacity-90"
             >
               <Navigation className="h-5 w-5" />
               Get Directions
@@ -115,7 +110,7 @@ export default function LocationSection() {
           {/* Map */}
           <motion.div
             variants={fromRightVariants}
-            className="min-h-[22rem] overflow-hidden rounded-3xl border border-white/10"
+            className="min-h-[22rem] overflow-hidden rounded-3xl shadow-xl ring-1 ring-[#5a3320]/15"
           >
             <iframe
               title="The Black Penny location map"
@@ -135,7 +130,7 @@ export default function LocationSection() {
 function InfoRow({ icon: Icon, title, children }) {
   return (
     <div className="flex gap-4">
-      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-amber-200/15 text-amber-200">
+      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#5a3320]/10 text-[#5a3320]">
         <Icon className="h-5 w-5" strokeWidth={1.75} />
       </span>
       <div className="min-w-0">

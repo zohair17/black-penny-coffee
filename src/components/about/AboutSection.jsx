@@ -1,90 +1,45 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import SocialLinks from "@/components/layout/SocialLinks";
 import { siteConfig } from "@/config/site";
-import AboutVideo from "./AboutVideo";
 import StoryBlock from "./StoryBlock";
 import ValueList from "./ValueList";
-import Typewriter from "./Typewriter";
 import { fadeUpVariants } from "./motion";
 
 /**
  * About section.
  *
- * When it scrolls into view the looping `about.mp4` plays, the "Our Story"
- * block slides in from the left with its description typing out, the centre
- * "About" label fades up over the table, and "Our Value" slides in from the
- * right. Everything pauses/resets when it leaves the viewport.
+ * On a warm backdrop the "About" heading sits above two cards that fill the
+ * screen: the light "Our Story" card slides in from the left and the dark
+ * "Our Value" card from the right as the section scrolls into view.
  */
 export default function AboutSection() {
   const sectionRef = useRef(null);
-  const videoRef = useRef(null);
-  const inView = useInView(sectionRef, { amount: 0.4 });
-
-  // Play the background loop only while the section is on screen.
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-    if (inView) {
-      video.play().catch(() => {});
-    } else {
-      video.pause();
-    }
-  }, [inView]);
+  const inView = useInView(sectionRef, { amount: 0.3, once: true });
 
   return (
     <section
       id="about"
       ref={sectionRef}
-      className="relative min-h-[100svh] w-full overflow-hidden bg-black"
+      className="relative flex min-h-[100svh] w-full flex-col overflow-hidden bg-[#d8cabb] px-6 pb-16 pt-28 md:px-10 md:pb-20 md:pt-32"
     >
-      <AboutVideo ref={videoRef} />
-
-      {/* Scrim for legibility over the footage. */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/50 via-black/25 to-black/55"
-      />
-
-      {/* Relative + min-height so the stacked mobile layout can grow instead of
-          being crushed into one screen; on md+ it fills the viewport overlay. */}
       <motion.div
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
-        className="relative z-10 flex min-h-[100svh] flex-col"
+        className="mx-auto flex w-full max-w-6xl flex-1 flex-col"
       >
-        <div className="flex flex-1 items-center px-6 py-12 md:px-10 md:py-0">
-          <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 sm:gap-14 md:grid-cols-[1fr_auto_1fr] md:gap-6">
-            <StoryBlock className="md:justify-self-start" />
-
-            {/* "About" sits above the cup, "Us" below it. */}
-            <div className="flex flex-col items-center gap-4 py-2 sm:gap-6 md:h-[55vh] md:justify-between md:gap-0">
-              <Typewriter
-                text={siteConfig.about.centerLabel}
-                start={inView}
-                speed={140}
-                className="whitespace-nowrap text-center font-display text-6xl font-medium text-white text-shadow-soft sm:text-7xl md:text-7xl lg:text-8xl"
-              />
-              <Typewriter
-                text={siteConfig.about.centerLabelSub}
-                start={inView}
-                speed={140}
-                className="whitespace-nowrap text-center font-display text-6xl font-medium text-white text-shadow-soft sm:text-7xl md:text-7xl lg:text-8xl"
-              />
-            </div>
-
-            <ValueList className="md:justify-self-end" />
-          </div>
-        </div>
-
-        <motion.div
+        <motion.h2
           variants={fadeUpVariants}
-          className="flex justify-end px-6 pb-8 md:px-10"
+          className="text-center font-display text-6xl text-[#5a3320] sm:text-7xl md:text-8xl"
         >
-          <SocialLinks />
-        </motion.div>
+          {siteConfig.about.centerLabel}
+        </motion.h2>
+
+        <div className="mt-12 grid flex-1 grid-cols-1 items-stretch gap-6 md:mt-16 md:grid-cols-2 md:grid-rows-1 md:gap-8">
+          <StoryBlock />
+          <ValueList />
+        </div>
       </motion.div>
     </section>
   );

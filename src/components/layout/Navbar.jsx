@@ -5,18 +5,16 @@ import Image from "next/image";
 import { ShoppingCart, Menu } from "lucide-react";
 import { siteConfig, assets } from "@/config/site";
 import { useCart } from "@/components/cart/CartContext";
-import { useMenu } from "@/components/menu/MenuContext";
 import NavDrawer from "./NavDrawer";
 
 /**
  * Top navigation bar overlaid on the hero: logo, centred links, cart.
  * The cart button shows the live item count and opens the cart drawer;
- * the "Menu" link opens the 3D menu book. Below `md` the inline links
+ * the links scroll to their sections. Below `md` the inline links
  * collapse into a hamburger that opens the {@link NavDrawer}.
  */
 export default function Navbar() {
   const { count, openCart } = useCart();
-  const { openMenu } = useMenu();
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
@@ -35,28 +33,16 @@ export default function Navbar() {
 
         {/* Inline links — hidden on small screens in favour of the drawer. */}
         <ul className="hidden mt-2 items-center gap-3 text-xs font-medium tracking-wide sm:gap-5 sm:text-sm md:flex md:gap-8">
-          {siteConfig.nav.map((item) =>
-            item.href === "#menu" ? (
-              <li key={item.href}>
-                <button
-                  type="button"
-                  onClick={openMenu}
-                  className="text-shadow-soft transition-colors hover:text-amber-200"
-                >
-                  {item.label}
-                </button>
-              </li>
-            ) : (
-              <li key={item.href}>
-                <a
-                  href={item.href}
-                  className="text-shadow-soft transition-colors hover:text-amber-200"
-                >
-                  {item.label}
-                </a>
-              </li>
-            ),
-          )}
+          {siteConfig.nav.map((item) => (
+            <li key={item.href}>
+              <a
+                href={item.href}
+                className="text-shadow-soft transition-colors hover:text-amber-200"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
         </ul>
 
         <div className="flex items-center gap-4 mt-2">

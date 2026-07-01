@@ -3,7 +3,7 @@ import { siteConfig } from "@/config/site";
 import { riseVariants } from "./motion";
 
 /**
- * Upcoming event details shown on the right of the hero.
+ * Upcoming event details anchored to the bottom-left of the hero.
  */
 export default function EventCard({ className = "" }) {
   const { heading, lines } = siteConfig.event;
@@ -11,20 +11,20 @@ export default function EventCard({ className = "" }) {
   return (
     <motion.div
       variants={riseVariants}
-      className={`text-white text-shadow-soft md:text-right ${className}`}
+      className={`text-left text-white text-shadow-soft ${className}`}
     >
-      {/* Mobile / short screens: one compact line, pipe-separated. */}
-      <p className="text-center text-base font-light text-amber-50/90 md:hidden">
+      {/* Mobile: one compact, pipe-separated line. */}
+      <p className="max-w-[60vw] text-sm font-light text-amber-50/90 sm:hidden">
         <span className="font-medium text-white">{heading}: </span>
         {lines.join(" | ")}
       </p>
 
-      {/* md+ : large heading with the details stacked beneath. */}
-      <div className="hidden md:block">
-        <h2 className="font-display text-4xl font-medium sm:text-5xl md:text-6xl">
+      {/* sm+ : heading with the details stacked beneath. */}
+      <div className="hidden sm:block">
+        <h2 className="font-display text-5xl font-medium md:text-6xl">
           {heading}
         </h2>
-        <ul className="mt-3 space-y-1 text-center text-lg font-light text-amber-50/90 lg:text-xl">
+        <ul className="mt-2 space-y-0.5 text-base font-light text-amber-50/90 md:text-3xl">
           {lines.map((line) => (
             <li key={line}>{line}</li>
           ))}

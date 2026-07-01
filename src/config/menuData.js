@@ -188,6 +188,26 @@ export const menuSpreads = {
   ]),
 };
 
+/**
+ * Menu-section cards — the horizontally scrolling showcase of categories.
+ * Each entry carries a `title` (for labels/aria), the pre-broken `lines` shown
+ * stacked on the card, and the `img` that becomes the large dish behind the
+ * rail when this card is centred. Order matters: the section starts centred on
+ * the middle entry, so the three picture cards sit either side of it.
+ */
+export const menuCategories = [
+  { title: "Kahvalti Breakfasr", lines: ["Desserts", "&", "Coffee"], img: "/asset/breakfast/1.png" },
+  { title: "Salads & Bowls", lines: ["Salads", "&", "Bowls"], img: "/asset/foods-bowls/5.png" },
+  { title: "Specials & Mini Burgers", lines: ["Specials", "& Mini", "Burgers"], img: "/asset/mini-burgers/1.png" },
+  { title: "Gourmet Burgers & Pastas", lines: ["Gourmet", "Burgers", "& Pastas"], img: "/asset/pasta/1.png" },
+  { title: "Sandwiches, Wraps & Pizzas", lines: ["Sandwiches", "Wraps", "& Pizzas"], img: "/asset/wrap/1.png" },
+  { title: "Kids Menu & Beer Plates", lines: ["Kids", "Menu", "& Beer Plates"], img: "/asset/kids/1.png" },
+  { title: "Desserts & Coffee", lines: ["Desserts", "&", "Coffee"], img: "/asset/dessert/1.png" },
+  { title: "Soft Drinks & Beer", lines: ["Soft", "Drinks", "& Beer"], img: "/asset/drink/1.png" },
+  { title: "Wines & Whisky", lines: ["Wines", "&", "Whisky"], img: "/asset/wines/1.png" },
+
+];
+
 /** Items for the spread currently open at a given book position (or []). */
 export function itemsForPosition(position) {
   return menuSpreads[position + 1]?.items ?? [];
